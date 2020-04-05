@@ -37,6 +37,14 @@ const schema = {
   }
 };
 
+const responseSchema = {
+  ...schema,
+  properties: {
+    ...schema.properties,
+    additional: { type: 'string' },
+  }
+};
+
 module.exports = function (app) {
   const Model = createModel(app);
   const paginate = app.get('paginate');
@@ -50,9 +58,11 @@ module.exports = function (app) {
   const service = createService(options);
 
   service.docs = {
-    schema,
     securities: ['all']
   };
+
+  service.model = schema;
+  service.modelResponse = responseSchema;
 
   app.use('/users', service);
 
