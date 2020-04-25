@@ -1,4 +1,4 @@
-const path = require('path');
+// const path = require('path');
 const swagger = require('feathers-swagger');
 const { Model: SequelizeModel } = require('sequelize');
 const NeDBModel = require('nedb');
@@ -16,7 +16,8 @@ module.exports = (app) => {
       },
     },
     openApiVersion: 3,
-    uiIndex: path.join(__dirname, '..', 'public', 'docs', 'index.html'),
+    //uiIndex: path.join(__dirname, '..', 'public', 'docs', 'index.html'),
+    uiIndex: true,
     docsJsonPath: '/docs/swagger.json',
     defaults: {
       getOperationsRefs(model, service) {
