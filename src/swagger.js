@@ -14,6 +14,17 @@ module.exports = (app) => {
         title: 'Testing stuff with feathers',
         version: '0.0.1',
       },
+      components: {
+        securitySchemes: {
+          BearerAuth: {
+            type: 'http',
+            scheme: 'bearer'
+          }
+        }
+      },
+      security: [
+        { BearerAuth: [] }
+      ]
     },
     openApiVersion: 3,
     //uiIndex: path.join(__dirname, '..', 'public', 'docs', 'index.html'),

@@ -91,13 +91,38 @@ window.onload = function() {
       apiKeyAuthFormPlugin: {
         forms: {
           BearerAuth: {
-            authCallback(values, callback) {
-              // mimic logic process
-              if (values.username === 'user' && values.password === 'secret') {
-                callback(null, 'secret-key');
-              } else {
-                callback('invalid credentials');
+            fields: {
+              email: {
+                type: 'text',
+                label: 'E-Mail'
+              },
+              password: {
+                type: 'password',
+                label: 'Password',
               }
+            },
+            authCallback(values, callback) {
+
+              ui.fn.fetch({
+                url: '/authentication',
+                method: 'post',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ strategy: 'local', ...values }),
+              }).then(function (response) {
+                const json = JSON.parse(response.data);
+                console.log(json);
+                if (json.accessToken) {
+                  callback(null, json.accessToken);
+                } else {
+                  callback('error while login');
+                }
+              }).catch(function (err) {
+                console.log(err, Object.entries(err));
+                callback('error while login');
+              });
             },
           }
         },
