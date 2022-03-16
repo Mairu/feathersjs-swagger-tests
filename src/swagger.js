@@ -36,6 +36,10 @@ module.exports = (app) => {
 
         if (service.modelResponse) {
           refs.createResponse = `${model}_response`;
+          refs.getResponse = `${model}_response`;
+          refs.updateResponse = `${model}_response`;
+          refs.patchResponse = `${model}_response`;
+          refs.removeResponse = `${model}_response`;
         }
 
         return refs;

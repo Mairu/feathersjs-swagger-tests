@@ -58,7 +58,7 @@ module.exports = function (app) {
   const service = createService(options);
 
   service.docs = {
-    securities: ['all']
+    securities: ['find', 'get', 'patch', 'update', 'remove']
   };
 
   service.model = schema;
