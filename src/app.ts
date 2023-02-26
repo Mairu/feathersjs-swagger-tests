@@ -7,6 +7,7 @@ import { configurationValidator } from './configuration';
 import type { Application } from './declarations';
 import { logError } from './hooks/log-error';
 import { sqlite } from './sqlite';
+import { authentication } from './authentication';
 import { services } from './services';
 
 const app: Application = koa(feathers());
@@ -25,6 +26,7 @@ app.use(bodyParser());
 app.configure(rest());
 
 app.configure(sqlite);
+app.configure(authentication);
 app.configure(services);
 
 // Register hooks that run on all service methods
