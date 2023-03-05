@@ -1,7 +1,8 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/service.html
 import { authenticate } from '@feathersjs/authentication';
-
 import { hooks as schemaHooks } from '@feathersjs/schema';
+
+import { createSwaggerServiceOptions } from 'feathers-swagger';
 
 import {
   messageDataValidator,
@@ -12,6 +13,10 @@ import {
   messageDataResolver,
   messagePatchResolver,
   messageQueryResolver,
+  messageSchema,
+  messageDataSchema,
+  messagePatchSchema,
+  messageQuerySchema
 } from './messages.schema';
 
 import type { Application } from '../../declarations';
@@ -30,6 +35,12 @@ export const message = (app: Application) => {
     methods: messageMethods,
     // You can add additional custom events to be sent to clients here
     events: [],
+    docs: createSwaggerServiceOptions({
+      schemas: { messageSchema, messageDataSchema, messagePatchSchema, messageQuerySchema },
+      docs: {
+        securities: ['all'],
+      }
+    })
   });
   // Initialize hooks
   app.service(messagePath).hooks({

@@ -1,8 +1,12 @@
 # feathersjs-swagger-tests-v5-koa
 
-> Feathers Swagger Tests with v5 and koa
-
 ## About
+
+This is an example repository adding swagger documentation to the feathers-chat example application.
+
+Application was generated with the feathers cli generator using the options:
+* koa
+* TypeBox
 
 This project uses [Feathers](http://feathersjs.com). An open source framework for building APIs and real-time applications.
 

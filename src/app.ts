@@ -9,6 +9,7 @@ import { logError } from './hooks/log-error';
 import { sqlite } from './sqlite';
 import { authentication } from './authentication';
 import { services } from './services';
+import openapi from './openapi';
 
 const app: Application = koa(feathers());
 
@@ -24,6 +25,7 @@ app.use(bodyParser());
 
 // Configure services and transports
 app.configure(rest());
+app.configure(openapi);
 
 app.configure(sqlite);
 app.configure(authentication);
