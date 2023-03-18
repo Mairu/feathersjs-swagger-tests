@@ -22,7 +22,7 @@ export const messageSchema = {
   required: ['id', 'text', 'userId', 'createdAt', 'user'],
   properties: {
     ...messageSchemaProps,
-    user: { $ref: 'User' },
+    user: { $ref: userSchema.$id },
   },
 } as const;
 export type Message = FromSchema<typeof messageSchema, { references: [typeof userSchema] }>;

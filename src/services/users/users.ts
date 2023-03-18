@@ -1,7 +1,7 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/service.html
 import { authenticate } from '@feathersjs/authentication';
-
 import { hooks as schemaHooks } from '@feathersjs/schema';
+import { createSwaggerServiceOptions } from 'feathers-swagger';
 
 import {
   userDataValidator,
@@ -12,6 +12,10 @@ import {
   userDataResolver,
   userPatchResolver,
   userQueryResolver,
+  userSchema,
+  userDataSchema,
+  userPatchSchema,
+  userQuerySchema
 } from './users.schema';
 
 import type { Application } from '../../declarations';
@@ -29,6 +33,12 @@ export const user = (app: Application) => {
     methods: userMethods,
     // You can add additional custom events to be sent to clients here
     events: [],
+    docs: createSwaggerServiceOptions({
+      schemas: { userSchema, userDataSchema, userPatchSchema, userQuerySchema },
+      docs: {
+        securities: ['get', 'find', 'patch', 'remove']
+      }
+    })
   });
   // Initialize hooks
   app.service(userPath).hooks({

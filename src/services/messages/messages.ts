@@ -12,11 +12,17 @@ import {
   messageDataResolver,
   messagePatchResolver,
   messageQueryResolver,
+  messageSchema,
+  messageDataSchema,
+  messagePatchSchema,
+  messageQuerySchema
 } from './messages.schema';
 
 import type { Application } from '../../declarations';
 import { MessageService, getOptions } from './messages.class';
 import { messagePath, messageMethods } from './messages.shared';
+
+import { createSwaggerServiceOptions } from 'feathers-swagger';
 
 export * from './messages.class';
 export * from './messages.schema';
@@ -29,6 +35,12 @@ export const message = (app: Application) => {
     methods: messageMethods,
     // You can add additional custom events to be sent to clients here
     events: [],
+    docs: createSwaggerServiceOptions({
+      schemas: { messageSchema, messageDataSchema, messagePatchSchema, messageQuerySchema },
+      docs: {
+        securities: ['all'],
+      }
+    })
   });
   // Initialize hooks
   app.service(messagePath).hooks({

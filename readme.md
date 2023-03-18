@@ -1,10 +1,12 @@
 # feathersjs-swagger-tests-v5-express-json-schema
 
-> 
-
 ## About
 
-This project uses [Feathers](http://feathersjs.com). An open source framework for building APIs and real-time applications.
+This is an example repository adding swagger documentation to the feathers-chat example application.
+
+Application was generated with the feathers cli generator using the options:
+ * express
+ * json schema
 
 ## Getting Started
 

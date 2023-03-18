@@ -20,6 +20,7 @@ import { sqlite } from './sqlite';
 import { authentication } from './authentication';
 import { services } from './services';
 import { channels } from './channels';
+import openapi from './openapi';
 
 const app: Application = express(feathers());
 
@@ -33,6 +34,7 @@ app.use('/', serveStatic(app.get('public')));
 
 // Configure services and real-time functionality
 app.configure(rest());
+app.configure(openapi);
 app.configure(
   socketio({
     cors: {

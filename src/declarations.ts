@@ -1,8 +1,9 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/typescript.html
 import { HookContext as FeathersHookContext, NextFunction } from '@feathersjs/feathers';
 import { Application as FeathersApplication } from '@feathersjs/express';
-import { ApplicationConfiguration } from './configuration';
+import { ServiceSwaggerOptions } from 'feathers-swagger';
 
+import { ApplicationConfiguration } from './configuration';
 import { User } from './services/users/users';
 
 export { NextFunction };
@@ -25,5 +26,9 @@ export type HookContext<S = any> = FeathersHookContext<Application, S>;
 declare module '@feathersjs/feathers' {
   interface Params {
     user?: User;
+  }
+
+  interface ServiceOptions {
+    docs?: ServiceSwaggerOptions;
   }
 }
