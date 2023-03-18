@@ -8,6 +8,8 @@ Application was generated with the feathers cli generator using the options:
  * express
  * json schema
 
+This project uses [Feathers](http://feathersjs.com). An open source framework for building APIs and real-time applications.
+
 ## Getting Started
 
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
